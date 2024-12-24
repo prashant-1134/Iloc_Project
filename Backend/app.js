@@ -14,17 +14,16 @@ app.set('view engine','ejs');
 //mongosh "mongodb+srv://Gaurav:Gaurav07@cluster0.wpdnp.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 
 
-//mongoose.connect("mongodb+srv://Gaurav:Gaurav07@cluster0.wpdnp.mongodb.net/ilocDB?retryWrites=true&w=majority&appName=Cluster0");
+
 //mongoose.connect("mongodb+srv://Gaurav:Gaurav07@cluster0.wpdnp.mongodb.net/ilocDB?retryWrites=true&w=majority&appName=Cluster0");
 
 require('dotenv').config();
 
 
 
-mongoose.connect(process.env.DB_CONNECTION_STRING, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-});
+mongoose.connect(process.env.DB_CONNECTION_STRING)
+  .then(() => console.log('Database connected successfully'))
+  .catch((err) => console.error('Database connection error:', err));
 
 // mongoose.connect("mongodb+srv://chaitanyadpitale:todolist@cluster0.gxc81.mongodb.net/todolistDB?retryWrites=true&w=majority&appName=Cluster0")
 
