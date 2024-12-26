@@ -8,6 +8,14 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("../Frontend/public"));  
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, '../Frontend')));
+
+// Serve index.html at the root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Frontend/index.html'));
+});
+
 
 app.set('view engine','ejs');
 
@@ -20,7 +28,7 @@ mongoose.connect(process.env.DB_CONNECTION_STRING)
   .then(() => console.log('Database connected successfully'))
   .catch((err) => console.error('Database connection error:', err));
 
-// mongoose.connect("mongodb+srv://chaitanyadpitale:todolist@cluster0.gxc81.mongodb.net/todolistDB?retryWrites=true&w=majority&appName=Cluster0")
+
 
 
 const stockAnalysisSchema = new mongoose.Schema({
@@ -401,9 +409,11 @@ app.get('/about',function(req,res){
 })
 
 let port = process.env.PORT;
-if(port == "" || port = null){
-	port = 3000
+
+if (port == null || port == "") {
+  port = 3000;
 }
+
 
 app.listen(port,function(){
 	console.log("server up and running...");
