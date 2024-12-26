@@ -8,6 +8,14 @@ const app = express();
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static("../Frontend/public"));  
+// Serve static files from the frontend directory
+app.use(express.static(path.join(__dirname, '../Frontend')));
+
+// Serve index.html at the root
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Frontend/index.html'));
+});
+
 
 app.set('view engine','ejs');
 

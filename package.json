@@ -4,8 +4,7 @@
   "description": "Item Locator and Demand Forecasting Project",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node Backend/server.js"
   },
   "author": "iloc team",
   "license": "ISC",
